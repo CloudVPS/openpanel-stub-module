@@ -1,0 +1,39 @@
+# ============================================================================
+# This file is part of OpenPanel - The Open Source Control Panel
+# OpenPanel is free software: you can redistribute it and/or modify it 
+# under the terms of the GNU General Public License as published by the Free 
+# Software Foundation, using version 3 of the License.
+#
+# Please note that use of the OpenPanel trademark may be subject to additional 
+# restrictions. For more information, please visit the Legal Information 
+# section of the OpenPanel website on http://www.openpanel.com/
+# ============================================================================
+module Stub					    < uuid 1951c43a-4e36-42d0-9870-eb8310e6282d
+								< version 1.0
+								< languages en_EN
+								< apitype commandline
+								< license GPL3
+								< author OpenPanel V.O.F.
+								< url http://www.openpanel.com/
+
+
+# ============================================================================
+# CLASSES
+# ============================================================================
+class Stub   					< uuid a4e1b8e1-608b-46ac-a824-35b45e6ee725
+								< version 1
+								< indexing manual
+								< uniquein class
+								< shortname stub
+								< title Stub
+								< description A stub class for openpanel-core testing
+								< sortindex 20
+								
+								< capabilities create delete update
+								
+	string id					: Stub name
+								< regexp [:domain:]
+								< example example.net
+	string cmd					: Command for stub
+								< regexp [:domain:]
+								< example failnow.example.net

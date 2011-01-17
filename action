@@ -1,0 +1,35 @@
+#!/bin/bash
+# This file is part of OpenPanel - The Open Source Control Panel
+# OpenPanel is free software: you can redistribute it and/or modify it 
+# under the terms of the GNU General Public License as published by the Free 
+# Software Foundation, using version 3 of the License.
+#
+# Please note that use of the OpenPanel trademark may be subject to additional 
+# restrictions. For more information, please visit the Legal Information 
+# section of the OpenPanel website on http://www.openpanel.com/
+
+#
+# Shell API implementation of the Stub module
+. /var/openpanel/api/sh/module.sh
+
+Stub.create() {
+	stubcmd=`coreval Stub cmd`
+	if [[ "$stubcmd" =~ failnow ]]; then
+	  exiterror "failure requested, providing it"
+	fi
+	true
+}
+
+Stub.update() {
+	stubcmd=`coreval Stub cmd`
+	if [[ "$stubcmd" =~ failnow ]]; then
+	  exiterror "failure requested, providing it"
+	fi
+	true
+}
+
+Stub.delete() {
+	true
+}
+
+implement Stub.module
