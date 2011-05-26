@@ -17,6 +17,6 @@ Standards-Version: 3.7.2
 Package: openpanel-mod-stub
 Architecture: any
 Pre-Depends: openpanel-core, openpanel-authd
-Depends: openpanel-core (>= 0.8.3), openpanel-mod-user, ${shlibs:Depends}, ${misc:Depends}
+Depends: openpanel-core (>= 0.8.3), openpanel-mod-user, openpanel-api-sh, ${shlibs:Depends}, ${misc:Depends}
 Description: Stub module for testing
  Stub module for testing
