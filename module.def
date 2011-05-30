@@ -37,3 +37,28 @@ class Stub   					< uuid a4e1b8e1-608b-46ac-a824-35b45e6ee725
 	string cmd					: Command for stub
 								< regexp [:domain:]
 								< example failnow.example.net
+
+class StubFile					< uuid 67237f5d-e2b2-4510-8e16-163b8c3677fc
+	                              		< version 1
+	                              		< indexing manual
+	                              		< shortname stubfile
+	                              		< description A stubfile class for authd testing
+	                              		< title StubFile
+	                              		< uniquein class
+                              			< capabilities create delete update
+                              
+    string id                 : StubFile Name
+								< regexp [:domain:]
+								< example example.net
+    string content	      : Content for StubFile
+								< regexp [:domain:]
+								< example token5.example.net
+    string cmd                : Command for StubFile
+								< regexp [:domain:]
+								< example failnow.example.net
+
+authd fileops
+    match *.openpanel-stub    : /tmp
+                              < user root
+                              < group root
+                              < perms 0644

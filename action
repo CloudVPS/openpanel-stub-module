@@ -32,4 +32,26 @@ Stub.delete() {
 	true
 }
 
+StubFile.create() {
+  content=$(coreval StubFile content)
+  id=$(coreval StubFile id)
+  echo "$content" > "${id}.openpanel-stub"
+  authd installfile "${id}.openpanel-stub" /tmp
+  stubcmd=`coreval StubFile cmd`
+  if [[ "$stubcmd" =~ failnow ]]; then
+    exiterror "failure requested, providing it"
+  fi
+  true
+}
+
+StubFile.update() {
+  StubFile.create
+}
+
+StubFile.delete() {
+  id=$(coreval OpenCORE:Session objectid)
+  try_authd deletefile "/tmp/${id}.openpanel-stub"
+  rm -f "${id}.openpanel-stub"
+}
+
 implement Stub.module
