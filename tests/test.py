@@ -1,4 +1,5 @@
 from OpenPanel.exception import CoreException
+import time
 
 def testcreate(ctx):
     stub = ctx.prefix+'stub1.example.com'
@@ -92,9 +93,41 @@ def testupdate(ctx):
 
     return True
 
+def testauthdfile(ctx):
+    stub = ctx.prefix+'stubfile1.example.com'
+    try:
+        stubid = ctx.conn.rpc.create(classid="StubFile", objectid=stub, data=dict(content='a.example.net', cmd='go.example.net'))['body']['data']['objid']
+    except CoreException:
+        ctx.fail("stubfile-create", "StubFile create failed")
+        return
+        
+    ctx.logger.debug("created StubFile %s" % (stub))
+    content = open("/tmp/%s.openpanel-stub" % stub).read()
+
+    success = False
+    try:
+        ctx.conn.rpc.update(classid="StubFile", objectid=stubid, data=dict(content='b.example.net', cmd='failnow.example.net'))
+    except CoreException:
+        success = True
+
+    if not success:
+        ctx.fail("stubfileupdate-failnow-update", "StubFile failnow-update incorrectly allowed")
+
+    if success:
+        ctx.logger.debug("failnow-update of stub %s correctly refused (%s)" % (stub, stubid))
+
+    time.sleep(5) # give authd some time to process the rollback
+    content2 = open("/tmp/%s.openpanel-stub" % stub).read()
+
+    if content != content2:
+	ctx.fail("stubfile-compare", "rollback destroyed our old file (expected <%r> got <%r>)" % (content, content2))
+    else:
+        ctx.logger.debug("rollback happened correctly")
+
 def test(ctx):
     testcreate(ctx)
     testupdate(ctx)
+    testauthdfile(ctx)
 
 def cleanup(ctx):
     return True
