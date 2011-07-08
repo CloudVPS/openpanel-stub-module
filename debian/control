@@ -11,12 +11,12 @@ Source: openpanel-mod-stub
 Section: misc
 Priority: optional
 Maintainer: OpenPanel packager <packages@openpanel.com>
-Build-Depends: debhelper (>= 5) , openpanel-dev
+Build-Depends: debhelper (>= 5) , openpanel-dev (>= 1.1)
 Standards-Version: 3.7.2
 
 Package: openpanel-mod-stub
 Architecture: any
-Pre-Depends: openpanel-core, openpanel-authd
-Depends: openpanel-core (>= 0.8.3), openpanel-mod-user, openpanel-api-sh, ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends: openpanel-core (>= 1.1), openpanel-authd (>= 1.1)
+Depends: openpanel-core (>= 0.8.3), openpanel-mod-user (>= 1.1), openpanel-api-sh (>= 1.1), ${shlibs:Depends}, ${misc:Depends}
 Description: Stub module for testing
  Stub module for testing
