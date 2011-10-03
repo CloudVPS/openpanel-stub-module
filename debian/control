@@ -15,7 +15,7 @@ Build-Depends: debhelper (>= 5) , openpanel-dev (>= 1.1)
 Standards-Version: 3.7.2
 
 Package: openpanel-mod-stub
-Architecture: any
+Architecture: all
 Pre-Depends: openpanel-core (>= 1.1), openpanel-authd (>= 1.1)
 Depends: openpanel-core (>= 0.8.3), openpanel-mod-user (>= 1.1), openpanel-api-sh (>= 1.1), ${shlibs:Depends}, ${misc:Depends}
 Description: Stub module for testing
